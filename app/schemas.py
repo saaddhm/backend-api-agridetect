@@ -15,6 +15,11 @@ class LoginRequest(BaseModel):
     password: str
 
 
+class RegisterResponse(BaseModel):
+    message: str
+    email: EmailStr
+
+
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
@@ -28,6 +33,7 @@ class UserResponse(BaseModel):
     role: str
     is_active: bool = True
     scan_enabled: bool = True
+    email_verified: bool = True
 
     class Config:
         from_attributes = True

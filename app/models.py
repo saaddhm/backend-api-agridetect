@@ -12,6 +12,9 @@ class User(SQLModel, table=True):
     role: str = Field(default="USER")  # USER | ADMIN
     is_active: bool = Field(default=True, index=True)
     scan_enabled: bool = Field(default=True, index=True)
+    email_verified: bool = Field(default=True, index=True)
+    email_verification_token: Optional[str] = Field(default=None, index=True)
+    email_verified_at: Optional[datetime] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 

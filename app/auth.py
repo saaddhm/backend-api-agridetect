@@ -50,6 +50,8 @@ def get_current_user(
         raise cred_exc
     if not user.is_active:
         raise HTTPException(status_code=403, detail="Compte desactive. Contactez l'administrateur.")
+    if not user.email_verified:
+        raise HTTPException(status_code=403, detail="Veuillez verifier votre e-mail avant de vous connecter.")
     return user
 
 

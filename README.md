@@ -42,11 +42,28 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - Documentation interactive : http://localhost:8000/docs
 - Santé / backend actif : http://localhost:8000/health
 
+### Verification e-mail
+
+Configurez ces variables sur le VPS pour envoyer les e-mails de verification :
+
+```bash
+PUBLIC_API_URL=http://2.24.15.70:8000/api
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-user@example.com
+SMTP_PASSWORD=your-password
+SMTP_FROM=noreply@agridetect.ai
+SMTP_TLS=true
+```
+
+Si `SMTP_HOST` n'est pas configure, le backend journalise le lien de verification dans les logs.
+
 ## Endpoints principaux
 
 | Méthode | Endpoint | Auth | Description |
 |---------|----------|------|-------------|
-| POST | `/api/auth/register` | — | Inscription (retourne un JWT) |
+| POST | `/api/auth/register` | — | Inscription + envoi e-mail de verification |
+| GET | `/api/auth/verify-email?token=...` | — | Verification de l'adresse e-mail |
 | POST | `/api/auth/login` | — | Connexion (retourne un JWT) |
 | GET | `/api/auth/me` | ✅ | Profil courant |
 | POST | `/api/predict` | ✅ | Analyser une image (multipart `image`) |

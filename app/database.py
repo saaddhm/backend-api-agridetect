@@ -12,6 +12,9 @@ def init_db() -> None:
     SQLModel.metadata.create_all(engine)
     _ensure_user_boolean_column("is_active")
     _ensure_user_boolean_column("scan_enabled")
+    _ensure_user_boolean_column("email_verified")
+    _ensure_user_nullable_column("email_verification_token", "VARCHAR(255)")
+    _ensure_user_nullable_column("email_verified_at", "DATETIME")
 
 
 def _ensure_user_boolean_column(name: str) -> None:
@@ -25,6 +28,17 @@ def _ensure_user_boolean_column(name: str) -> None:
     default = "1" if engine.dialect.name == "sqlite" else "TRUE"
     with engine.begin() as connection:
         connection.execute(text(f'ALTER TABLE "user" ADD COLUMN {name} BOOLEAN NOT NULL DEFAULT {default}'))
+
+
+def _ensure_user_nullable_column(name: str, column_type: str) -> None:
+    inspector = inspect(engine)
+    if not inspector.has_table("user"):
+        return
+    columns = {column["name"] for column in inspector.get_columns("user")}
+    if name in columns:
+        return
+    with engine.begin() as connection:
+        connection.execute(text(f'ALTER TABLE "user" ADD COLUMN {name} {column_type} NULL'))
 
 
 def get_session():
