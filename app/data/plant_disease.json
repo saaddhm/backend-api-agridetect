@@ -1,0 +1,977 @@
+[
+  {
+    "name": "Apple___Apple_scab",
+    "plant_i18n": {
+      "en": "Apple",
+      "fr": "Pommier",
+      "ar": "التفاح"
+    },
+    "disease_i18n": {
+      "en": "Apple scab",
+      "fr": "Tavelure du pommier",
+      "ar": "جرب التفاح"
+    },
+    "cause": "Fungus Venturia inaequalis. Favorable conditions are cool, wet weather.",
+    "cure": "Use fungicides and resistant apple varieties. Prune and destroy infected leaves.",
+    "cause_i18n": {
+      "en": "Fungus Venturia inaequalis. Favorable conditions are cool, wet weather.",
+      "fr": "Cause probable : Tavelure du pommier détectée sur Pommier. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف جرب التفاح على التفاح. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use fungicides and resistant apple varieties. Prune and destroy infected leaves.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Apple___Black_rot",
+    "plant_i18n": {
+      "en": "Apple",
+      "fr": "Pommier",
+      "ar": "التفاح"
+    },
+    "disease_i18n": {
+      "en": "Black rot",
+      "fr": "Pourriture noire",
+      "ar": "العفن الأسود"
+    },
+    "cause": "Caused by the fungus Botryosphaeria obtusa.",
+    "cure": "Prune and remove infected areas. Apply fungicides during the growing season.",
+    "cause_i18n": {
+      "en": "Caused by the fungus Botryosphaeria obtusa.",
+      "fr": "Cause probable : Pourriture noire détectée sur Pommier. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف العفن الأسود على التفاح. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Prune and remove infected areas. Apply fungicides during the growing season.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Apple___Cedar_apple_rust",
+    "plant_i18n": {
+      "en": "Apple",
+      "fr": "Pommier",
+      "ar": "التفاح"
+    },
+    "disease_i18n": {
+      "en": "Cedar apple rust",
+      "fr": "Rouille du pommier",
+      "ar": "صدأ التفاح"
+    },
+    "cause": "Fungus Gymnosporangium juniperi-virginianae. Requires junipers as an alternate host.",
+    "cure": "Remove nearby juniper hosts. Use resistant varieties and fungicides.",
+    "cause_i18n": {
+      "en": "Fungus Gymnosporangium juniperi-virginianae. Requires junipers as an alternate host.",
+      "fr": "Cause probable : Rouille du pommier détectée sur Pommier. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف صدأ التفاح على التفاح. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Remove nearby juniper hosts. Use resistant varieties and fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Apple___healthy",
+    "plant_i18n": {
+      "en": "Apple",
+      "fr": "Pommier",
+      "ar": "التفاح"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Background_without_leaves",
+    "plant_i18n": {
+      "en": "Background",
+      "fr": "Arrière-plan",
+      "ar": "الخلفية"
+    },
+    "disease_i18n": {
+      "en": "No leaf detected",
+      "fr": "Aucune feuille détectée",
+      "ar": "لم يتم اكتشاف أي ورقة"
+    },
+    "cause": "No disease or plant detected.",
+    "cure": "Not applicable.",
+    "cause_i18n": {
+      "en": "No disease or plant detected.",
+      "fr": "Aucune maladie ou plante détectée.",
+      "ar": "لم يتم اكتشاف أي نبات أو مرض."
+    },
+    "cure_i18n": {
+      "en": "Not applicable.",
+      "fr": "Non applicable.",
+      "ar": "غير قابل للتطبيق."
+    }
+  },
+  {
+    "name": "Blueberry___healthy",
+    "plant_i18n": {
+      "en": "Blueberry",
+      "fr": "Myrtille",
+      "ar": "التوت الأزرق"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Cherry___Powdery_mildew",
+    "plant_i18n": {
+      "en": "Cherry",
+      "fr": "Cerisier",
+      "ar": "الكرز"
+    },
+    "disease_i18n": {
+      "en": "Powdery mildew",
+      "fr": "Oïdium",
+      "ar": "البياض الدقيقي"
+    },
+    "cause": "Fungus Podosphaera clandestina.",
+    "cure": "Apply sulfur-based or fungicide treatments. Ensure good air circulation.",
+    "cause_i18n": {
+      "en": "Fungus Podosphaera clandestina.",
+      "fr": "Cause probable : Oïdium détectée sur Cerisier. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف البياض الدقيقي على الكرز. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply sulfur-based or fungicide treatments. Ensure good air circulation.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Cherry___healthy",
+    "plant_i18n": {
+      "en": "Cherry",
+      "fr": "Cerisier",
+      "ar": "الكرز"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+    "plant_i18n": {
+      "en": "Corn",
+      "fr": "Maïs",
+      "ar": "الذرة"
+    },
+    "disease_i18n": {
+      "en": "Gray leaf spot",
+      "fr": "Cercosporiose (taches grises)",
+      "ar": "تبقع الأوراق الرمادي"
+    },
+    "cause": "Fungus Cercospora zeae-maydis.",
+    "cure": "Use resistant hybrids and fungicide sprays.",
+    "cause_i18n": {
+      "en": "Fungus Cercospora zeae-maydis.",
+      "fr": "Cause probable : Cercosporiose (taches grises) détectée sur Maïs. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف تبقع الأوراق الرمادي على الذرة. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use resistant hybrids and fungicide sprays.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Corn___Common_rust",
+    "plant_i18n": {
+      "en": "Corn",
+      "fr": "Maïs",
+      "ar": "الذرة"
+    },
+    "disease_i18n": {
+      "en": "Common rust",
+      "fr": "Rouille commune",
+      "ar": "الصدأ الشائع"
+    },
+    "cause": "Fungus Puccinia sorghi.",
+    "cure": "Apply fungicides and plant resistant varieties.",
+    "cause_i18n": {
+      "en": "Fungus Puccinia sorghi.",
+      "fr": "Cause probable : Rouille commune détectée sur Maïs. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف الصدأ الشائع على الذرة. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply fungicides and plant resistant varieties.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Corn___Northern_Leaf_Blight",
+    "plant_i18n": {
+      "en": "Corn",
+      "fr": "Maïs",
+      "ar": "الذرة"
+    },
+    "disease_i18n": {
+      "en": "Northern leaf blight",
+      "fr": "Helminthosporiose du Nord",
+      "ar": "لفحة الأوراق الشمالية"
+    },
+    "cause": "Fungus Exserohilum turcicum.",
+    "cure": "Use resistant varieties and fungicides.",
+    "cause_i18n": {
+      "en": "Fungus Exserohilum turcicum.",
+      "fr": "Cause probable : Helminthosporiose du Nord détectée sur Maïs. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف لفحة الأوراق الشمالية على الذرة. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use resistant varieties and fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Corn___healthy",
+    "plant_i18n": {
+      "en": "Corn",
+      "fr": "Maïs",
+      "ar": "الذرة"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Grape___Black_rot",
+    "plant_i18n": {
+      "en": "Grape",
+      "fr": "Vigne",
+      "ar": "العنب"
+    },
+    "disease_i18n": {
+      "en": "Black rot",
+      "fr": "Pourriture noire",
+      "ar": "العفن الأسود"
+    },
+    "cause": "Fungus Guignardia bidwellii.",
+    "cure": "Prune infected areas and apply fungicides.",
+    "cause_i18n": {
+      "en": "Fungus Guignardia bidwellii.",
+      "fr": "Cause probable : Pourriture noire détectée sur Vigne. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف العفن الأسود على العنب. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Prune infected areas and apply fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Grape___Esca_(Black_Measles)",
+    "plant_i18n": {
+      "en": "Grape",
+      "fr": "Vigne",
+      "ar": "العنب"
+    },
+    "disease_i18n": {
+      "en": "Esca (black measles)",
+      "fr": "Esca (maladie du bois)",
+      "ar": "الإسكا (الحصبة السوداء)"
+    },
+    "cause": "Fungal complex including Phaeomoniella chlamydospora.",
+    "cure": "Remove infected wood. Avoid injuries to vines.",
+    "cause_i18n": {
+      "en": "Fungal complex including Phaeomoniella chlamydospora.",
+      "fr": "Cause probable : Esca (maladie du bois) détectée sur Vigne. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف الإسكا (الحصبة السوداء) على العنب. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Remove infected wood. Avoid injuries to vines.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+    "plant_i18n": {
+      "en": "Grape",
+      "fr": "Vigne",
+      "ar": "العنب"
+    },
+    "disease_i18n": {
+      "en": "Leaf blight",
+      "fr": "Brûlure des feuilles",
+      "ar": "لفحة الأوراق"
+    },
+    "cause": "Fungus Pseudocercospora vitis.",
+    "cure": "Apply fungicides and manage vineyard hygiene.",
+    "cause_i18n": {
+      "en": "Fungus Pseudocercospora vitis.",
+      "fr": "Cause probable : Brûlure des feuilles détectée sur Vigne. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف لفحة الأوراق على العنب. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply fungicides and manage vineyard hygiene.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Grape___healthy",
+    "plant_i18n": {
+      "en": "Grape",
+      "fr": "Vigne",
+      "ar": "العنب"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Orange___Haunglongbing_(Citrus_greening)",
+    "plant_i18n": {
+      "en": "Orange",
+      "fr": "Oranger",
+      "ar": "البرتقال"
+    },
+    "disease_i18n": {
+      "en": "Huanglongbing (citrus greening)",
+      "fr": "Huanglongbing (greening)",
+      "ar": "مرض اخضرار الحمضيات"
+    },
+    "cause": "Bacterium Candidatus Liberibacter spp. Spread by psyllid insects.",
+    "cure": "Control psyllid population and remove infected trees.",
+    "cause_i18n": {
+      "en": "Bacterium Candidatus Liberibacter spp. Spread by psyllid insects.",
+      "fr": "Cause probable : Huanglongbing (greening) détectée sur Oranger. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف مرض اخضرار الحمضيات على البرتقال. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Control psyllid population and remove infected trees.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Peach___Bacterial_spot",
+    "plant_i18n": {
+      "en": "Peach",
+      "fr": "Pêcher",
+      "ar": "الخوخ"
+    },
+    "disease_i18n": {
+      "en": "Bacterial spot",
+      "fr": "Tache bactérienne",
+      "ar": "التبقع البكتيري"
+    },
+    "cause": "Bacterium Xanthomonas campestris pv. pruni.",
+    "cure": "Use resistant varieties and copper-based bactericides.",
+    "cause_i18n": {
+      "en": "Bacterium Xanthomonas campestris pv. pruni.",
+      "fr": "Cause probable : Tache bactérienne détectée sur Pêcher. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف التبقع البكتيري على الخوخ. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use resistant varieties and copper-based bactericides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Peach___healthy",
+    "plant_i18n": {
+      "en": "Peach",
+      "fr": "Pêcher",
+      "ar": "الخوخ"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Pepper,_bell___Bacterial_spot",
+    "plant_i18n": {
+      "en": "Bell pepper",
+      "fr": "Poivron",
+      "ar": "الفلفل الحلو"
+    },
+    "disease_i18n": {
+      "en": "Bacterial spot",
+      "fr": "Tache bactérienne",
+      "ar": "التبقع البكتيري"
+    },
+    "cause": "Bacterium Xanthomonas campestris pv. vesicatoria.",
+    "cure": "Use copper-based bactericides and resistant varieties.",
+    "cause_i18n": {
+      "en": "Bacterium Xanthomonas campestris pv. vesicatoria.",
+      "fr": "Cause probable : Tache bactérienne détectée sur Poivron. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف التبقع البكتيري على الفلفل الحلو. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use copper-based bactericides and resistant varieties.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Pepper,_bell___healthy",
+    "plant_i18n": {
+      "en": "Bell pepper",
+      "fr": "Poivron",
+      "ar": "الفلفل الحلو"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Potato___Early_blight",
+    "plant_i18n": {
+      "en": "Potato",
+      "fr": "Pomme de terre",
+      "ar": "البطاطس"
+    },
+    "disease_i18n": {
+      "en": "Early blight",
+      "fr": "Alternariose",
+      "ar": "اللفحة المبكرة"
+    },
+    "cause": "Fungus Alternaria solani.",
+    "cure": "Apply fungicides and practice crop rotation.",
+    "cause_i18n": {
+      "en": "Fungus Alternaria solani.",
+      "fr": "Cause probable : Alternariose détectée sur Pomme de terre. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف اللفحة المبكرة على البطاطس. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply fungicides and practice crop rotation.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Potato___Late_blight",
+    "plant_i18n": {
+      "en": "Potato",
+      "fr": "Pomme de terre",
+      "ar": "البطاطس"
+    },
+    "disease_i18n": {
+      "en": "Late blight",
+      "fr": "Mildiou",
+      "ar": "اللفحة المتأخرة"
+    },
+    "cause": "Pathogen Phytophthora infestans.",
+    "cure": "Use resistant varieties and fungicides.",
+    "cause_i18n": {
+      "en": "Pathogen Phytophthora infestans.",
+      "fr": "Cause probable : Mildiou détectée sur Pomme de terre. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف اللفحة المتأخرة على البطاطس. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use resistant varieties and fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Potato___healthy",
+    "plant_i18n": {
+      "en": "Potato",
+      "fr": "Pomme de terre",
+      "ar": "البطاطس"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Raspberry___healthy",
+    "plant_i18n": {
+      "en": "Raspberry",
+      "fr": "Framboisier",
+      "ar": "توت العليق"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Soybean___healthy",
+    "plant_i18n": {
+      "en": "Soybean",
+      "fr": "Soja",
+      "ar": "فول الصويا"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Squash___Powdery_mildew",
+    "plant_i18n": {
+      "en": "Squash",
+      "fr": "Courge",
+      "ar": "القرع"
+    },
+    "disease_i18n": {
+      "en": "Powdery mildew",
+      "fr": "Oïdium",
+      "ar": "البياض الدقيقي"
+    },
+    "cause": "Fungal pathogens including Erysiphe cichoracearum.",
+    "cure": "Apply sulfur-based fungicides and maintain good air circulation.",
+    "cause_i18n": {
+      "en": "Fungal pathogens including Erysiphe cichoracearum.",
+      "fr": "Cause probable : Oïdium détectée sur Courge. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف البياض الدقيقي على القرع. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply sulfur-based fungicides and maintain good air circulation.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Strawberry___Leaf_scorch",
+    "plant_i18n": {
+      "en": "Strawberry",
+      "fr": "Fraisier",
+      "ar": "الفراولة"
+    },
+    "disease_i18n": {
+      "en": "Leaf scorch",
+      "fr": "Brûlure des feuilles",
+      "ar": "احتراق الأوراق"
+    },
+    "cause": "Fungus Diplocarpon earlianum.",
+    "cure": "Remove infected leaves and apply fungicides.",
+    "cause_i18n": {
+      "en": "Fungus Diplocarpon earlianum.",
+      "fr": "Cause probable : Brûlure des feuilles détectée sur Fraisier. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف احتراق الأوراق على الفراولة. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Remove infected leaves and apply fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Strawberry___healthy",
+    "plant_i18n": {
+      "en": "Strawberry",
+      "fr": "Fraisier",
+      "ar": "الفراولة"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  },
+  {
+    "name": "Tomato___Bacterial_spot",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Bacterial spot",
+      "fr": "Tache bactérienne",
+      "ar": "التبقع البكتيري"
+    },
+    "cause": "Bacterium Xanthomonas spp.",
+    "cure": "Apply copper-based bactericides and practice crop rotation.",
+    "cause_i18n": {
+      "en": "Bacterium Xanthomonas spp.",
+      "fr": "Cause probable : Tache bactérienne détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف التبقع البكتيري على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply copper-based bactericides and practice crop rotation.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Early_blight",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Early blight",
+      "fr": "Alternariose",
+      "ar": "اللفحة المبكرة"
+    },
+    "cause": "Fungus Alternaria solani.",
+    "cure": "Apply fungicides and remove infected leaves.",
+    "cause_i18n": {
+      "en": "Fungus Alternaria solani.",
+      "fr": "Cause probable : Alternariose détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف اللفحة المبكرة على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply fungicides and remove infected leaves.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Late_blight",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Late blight",
+      "fr": "Mildiou",
+      "ar": "اللفحة المتأخرة"
+    },
+    "cause": "Pathogen Phytophthora infestans.",
+    "cure": "Use resistant varieties and fungicides.",
+    "cause_i18n": {
+      "en": "Pathogen Phytophthora infestans.",
+      "fr": "Cause probable : Mildiou détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف اللفحة المتأخرة على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use resistant varieties and fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Leaf_Mold",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Leaf mold",
+      "fr": "Cladosporiose",
+      "ar": "عفن الأوراق"
+    },
+    "cause": "Fungus Passalora fulva.",
+    "cure": "Apply fungicides and ensure good ventilation.",
+    "cause_i18n": {
+      "en": "Fungus Passalora fulva.",
+      "fr": "Cause probable : Cladosporiose détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف عفن الأوراق على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply fungicides and ensure good ventilation.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Septoria_leaf_spot",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Septoria leaf spot",
+      "fr": "Septoriose",
+      "ar": "تبقع أوراق السبتوريا"
+    },
+    "cause": "Fungus Septoria lycopersici.",
+    "cure": "Remove infected leaves and apply fungicides.",
+    "cause_i18n": {
+      "en": "Fungus Septoria lycopersici.",
+      "fr": "Cause probable : Septoriose détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف تبقع أوراق السبتوريا على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Remove infected leaves and apply fungicides.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Spider_mites Two-spotted_spider_mite",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Two-spotted spider mites",
+      "fr": "Acariens tétranyques",
+      "ar": "العنكبوت الأحمر ذو البقعتين"
+    },
+    "cause": "Spider mites Tetranychus urticae.",
+    "cure": "Use miticides or insecticidal soaps.",
+    "cause_i18n": {
+      "en": "Spider mites Tetranychus urticae.",
+      "fr": "Cause probable : Acariens tétranyques détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف العنكبوت الأحمر ذو البقعتين على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Use miticides or insecticidal soaps.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Target_Spot",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Target spot",
+      "fr": "Tache cible",
+      "ar": "التبقع الهدف"
+    },
+    "cause": "Fungus Corynespora cassiicola.",
+    "cure": "Apply fungicides and ensure good air circulation.",
+    "cause_i18n": {
+      "en": "Fungus Corynespora cassiicola.",
+      "fr": "Cause probable : Tache cible détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف التبقع الهدف على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Apply fungicides and ensure good air circulation.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Tomato yellow leaf curl virus",
+      "fr": "Virus TYLCV",
+      "ar": "فيروس تجعد واصفرار أوراق الطماطم"
+    },
+    "cause": "Virus spread by whiteflies.",
+    "cure": "Control whitefly population and use resistant varieties.",
+    "cause_i18n": {
+      "en": "Virus spread by whiteflies.",
+      "fr": "Cause probable : Virus TYLCV détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف فيروس تجعد واصفرار أوراق الطماطم على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Control whitefly population and use resistant varieties.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___Tomato_mosaic_virus",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Tomato mosaic virus",
+      "fr": "Virus de la mosaïque",
+      "ar": "فيروس موزاييك الطماطم"
+    },
+    "cause": "Virus transmitted through contact and contaminated tools.",
+    "cure": "Remove infected plants and sterilize tools.",
+    "cause_i18n": {
+      "en": "Virus transmitted through contact and contaminated tools.",
+      "fr": "Cause probable : Virus de la mosaïque détectée sur Tomate. Vérifier l'humidité, l'aération et l'état sanitaire de la culture.",
+      "ar": "السبب المحتمل: تم اكتشاف فيروس موزاييك الطماطم على الطماطم. تحقق من الرطوبة والتهوية والحالة الصحية للمحصول."
+    },
+    "cure_i18n": {
+      "en": "Remove infected plants and sterilize tools.",
+      "fr": "Retirer les parties infectées, améliorer l'aération et utiliser un traitement adapté si nécessaire.",
+      "ar": "أزل الأجزاء المصابة، حسّن التهوية، واستعمل علاجاً مناسباً عند الحاجة."
+    }
+  },
+  {
+    "name": "Tomato___healthy",
+    "plant_i18n": {
+      "en": "Tomato",
+      "fr": "Tomate",
+      "ar": "الطماطم"
+    },
+    "disease_i18n": {
+      "en": "Healthy",
+      "fr": "Saine",
+      "ar": "سليم"
+    },
+    "cause": "No disease present.",
+    "cure": "Maintain good cultural practices for optimal health.",
+    "cause_i18n": {
+      "en": "No disease present.",
+      "fr": "Aucune maladie présente.",
+      "ar": "لا يوجد مرض ظاهر."
+    },
+    "cure_i18n": {
+      "en": "Maintain good cultural practices for optimal health.",
+      "fr": "Maintenir de bonnes pratiques culturales pour préserver la santé de la plante.",
+      "ar": "حافظ على ممارسات زراعية جيدة للحفاظ على صحة النبات."
+    }
+  }
+]
