@@ -20,6 +20,15 @@ class RegisterResponse(BaseModel):
     email: EmailStr
 
 
+class VerifyCodeRequest(BaseModel):
+    email: EmailStr
+    code: str
+
+
+class ResendCodeRequest(BaseModel):
+    email: EmailStr
+
+
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"

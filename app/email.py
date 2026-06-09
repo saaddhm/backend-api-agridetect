@@ -63,3 +63,53 @@ def send_verification_email(email: str, full_name: str, token: str) -> None:
         if settings.SMTP_USER:
             smtp.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
         smtp.send_message(message)
+
+
+def send_verification_code(email: str, full_name: str, code: str) -> None:
+    """Envoie un code de verification a 6 chiffres par e-mail."""
+    display_name = escape(full_name or "AgriDetect user")
+
+    if not settings.SMTP_HOST:
+        # Mode dev : pas de SMTP -> on journalise le code pour pouvoir tester.
+        logger.warning("SMTP non configure. Code de verification pour %s : %s", email, code)
+        return
+
+    message = EmailMessage()
+    message["Subject"] = "Votre code de verification AgriDetect AI"
+    message["From"] = settings.SMTP_FROM
+    message["To"] = email
+    message.set_content(
+        "\n".join(
+            [
+                f"Bonjour {full_name},",
+                "",
+                "Votre code de verification AgriDetect AI est :",
+                code,
+                "",
+                "Ce code est valable 15 minutes.",
+                "Si vous n'avez pas cree ce compte, ignorez cet e-mail.",
+            ]
+        )
+    )
+    message.add_alternative(
+        f"""
+        <html>
+          <body style="font-family: Arial, sans-serif; color: #102018;">
+            <h2>Verification de votre e-mail</h2>
+            <p>Bonjour {display_name},</p>
+            <p>Voici votre code de verification AgriDetect AI :</p>
+            <p style="font-size:32px;font-weight:bold;letter-spacing:8px;color:#167145;">{escape(code)}</p>
+            <p>Ce code est valable <b>15 minutes</b>.</p>
+            <p>Si vous n'avez pas cree ce compte, ignorez cet e-mail.</p>
+          </body>
+        </html>
+        """,
+        subtype="html",
+    )
+
+    with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT, timeout=20) as smtp:
+        if settings.SMTP_TLS:
+            smtp.starttls()
+        if settings.SMTP_USER:
+            smtp.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+        smtp.send_message(message)

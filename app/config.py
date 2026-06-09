@@ -11,10 +11,10 @@ class Settings:
     MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "10"))
     CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*").split(",")
     PUBLIC_API_URL = os.getenv("PUBLIC_API_URL", "http://localhost:8000/api").rstrip("/")
-    SMTP_HOST = os.getenv("SMTP_HOST", "")
+    SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
     SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-    SMTP_USER = os.getenv("SMTP_USER", "")
-    SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+    SMTP_USER = os.getenv("SMTP_USER", "saaddev3@gmail.com")
+    SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "puxr kmie dznj fjbr")
     SMTP_FROM = os.getenv("SMTP_FROM", SMTP_USER or "noreply@agridetect.ai")
     SMTP_TLS = os.getenv("SMTP_TLS", "true").lower() in {"1", "true", "yes", "on"}
 

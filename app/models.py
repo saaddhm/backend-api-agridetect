@@ -14,6 +14,8 @@ class User(SQLModel, table=True):
     scan_enabled: bool = Field(default=True, index=True)
     email_verified: bool = Field(default=True, index=True)
     email_verification_token: Optional[str] = Field(default=None, index=True)
+    email_verification_code: Optional[str] = Field(default=None, index=True)
+    email_code_expires_at: Optional[datetime] = None
     email_verified_at: Optional[datetime] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
