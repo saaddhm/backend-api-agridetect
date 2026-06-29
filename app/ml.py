@@ -24,8 +24,12 @@ MODELS_DIR = BASE_DIR.parent / "models"
 
 # Système de versioning : l'application charge TOUJOURS current_model.keras
 # (copie du modèle de production en cours). Voir models/README.
-MODEL_VERSION = os.getenv("MODEL_VERSION", "v2")
-MODEL_PATH = os.getenv("MODEL_PATH", str(MODELS_DIR / "current_model.keras"))
+MODEL_VERSION = os.getenv("MODEL_VERSION", "efficientnetv2b0")
+MODEL_PATH = os.getenv(
+    "MODEL_PATH",
+    str(MODELS_DIR / "agridetect_efficientnetv2b0.keras")
+)
+LABELS_PATH = os.getenv("LABELS_PATH", str(MODELS_DIR / "labels.txt"))
 PLANT_DETECTOR_PATH = os.getenv("PLANT_DETECTOR_PATH", str(MODELS_DIR / "model.pt"))
 
 DEFAULT_IMG_SIZE = (224, 224)
@@ -34,12 +38,15 @@ MIN_PLANT_DETECTION_CONFIDENCE = float(os.getenv("MIN_PLANT_DETECTION_CONFIDENCE
 MIN_PLANT_HINT_CONFIDENCE = float(os.getenv("MIN_PLANT_HINT_CONFIDENCE", "0.05"))
 MIN_LEAF_SIGNAL = float(os.getenv("MIN_LEAF_SIGNAL", "0.04"))
 MIN_CENTER_LEAF_SIGNAL = float(os.getenv("MIN_CENTER_LEAF_SIGNAL", "0.04"))
+ML_COMPARE_PREPROCESSING = os.getenv("ML_COMPARE_PREPROCESSING", "0").lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 LOGGER = logging.getLogger("agridetect")
 
-# Exact 38-class order used by mobile/assets/model/labels.txt and
-# backend-api/models/agridetect_model.keras.
-LABELS = [
+FALLBACK_LABELS = [
     "Apple___Apple_scab",
     "Apple___Black_rot",
     "Apple___Cedar_apple_rust",
@@ -79,6 +86,35 @@ LABELS = [
     "Tomato___Tomato_mosaic_virus",
     "Tomato___healthy",
 ]
+
+
+def _load_labels() -> list[str]:
+    """Load deployed class order from labels.txt, with the historical list as fallback."""
+    path = Path(LABELS_PATH)
+    if not path.exists():
+        LOGGER.warning("Labels file not found at %s; using fallback labels.", path)
+        return FALLBACK_LABELS
+
+    labels = [
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if len(labels) != len(FALLBACK_LABELS):
+        raise ValueError(
+            f"Labels file has {len(labels)} classes, expected {len(FALLBACK_LABELS)}: {path}"
+        )
+    if labels != FALLBACK_LABELS:
+        LOGGER.warning(
+            "Labels file order differs from fallback order; using deployed labels file: %s",
+            path,
+        )
+    return labels
+
+
+# Exact 38-class order used by the deployed model. Prefer backend-api/models/labels.txt
+# so the API follows the exported training class order instead of a stale hard-coded list.
+LABELS = _load_labels()
 
 PLANT_KEYS = sorted({label.split("___")[0] for label in LABELS})
 
@@ -235,6 +271,9 @@ class _Predictor:
         self.img_size = DEFAULT_IMG_SIZE
         self._model_error = None
         self._model_has_rescaling = False
+        self._model_has_normalization = False
+        self._model_outputs_logits = False
+        self._preprocess_mode = "unknown"
         self.detector_names: dict[int, str] = {}
 
     def _try_load(self):
@@ -264,6 +303,9 @@ class _Predictor:
             self.img_size = self._detect_input_size()
             self._validate_model_output()
             self._model_has_rescaling = self._detect_rescaling_layer()
+            self._model_has_normalization = self._detect_normalization_layer()
+            self._model_outputs_logits = self._detect_logits_output()
+            self._preprocess_mode = self._select_preprocess_mode()
 
             out_shape = getattr(self._model, "output_shape", None)
             LOGGER.info("=" * 52)
@@ -273,7 +315,14 @@ class _Predictor:
             LOGGER.info("Input shape   : (1, %d, %d, 3)", self.img_size[0], self.img_size[1])
             LOGGER.info("Output shape  : %s", out_shape)
             LOGGER.info("Num classes   : %d", len(LABELS))
+            LOGGER.info("Labels file   : %s", LABELS_PATH)
             LOGGER.info("Rescaling     : %s (internal 1/255)", self._model_has_rescaling)
+            LOGGER.info("Normalization : %s (internal mean/std)", self._model_has_normalization)
+            LOGGER.info("Preprocess    : %s", self._preprocess_mode)
+            LOGGER.info(
+                "Output mode   : %s",
+                "logits" if self._model_outputs_logits else "probabilities/softmax",
+            )
             LOGGER.info("=" * 52)
 
             from ultralytics import YOLO
@@ -306,11 +355,42 @@ class _Predictor:
                 f"Model output has {output_classes} classes, expected {len(LABELS)} classes."
             )
 
+    def _iter_model_layers(self):
+        stack = list(getattr(self._model, "layers", []))
+        while stack:
+            layer = stack.pop(0)
+            yield layer
+            nested = getattr(layer, "layers", None)
+            if nested:
+                stack[0:0] = list(nested)
+
     def _detect_rescaling_layer(self) -> bool:
-        for layer in getattr(self._model, "layers", []):
+        for layer in self._iter_model_layers():
             if layer.__class__.__name__.lower() == "rescaling":
                 return True
         return False
+
+    def _detect_normalization_layer(self) -> bool:
+        for layer in self._iter_model_layers():
+            if layer.__class__.__name__.lower() == "normalization":
+                return True
+        return False
+
+    def _detect_logits_output(self) -> bool:
+        layers = list(self._iter_model_layers())
+        for layer in reversed(layers):
+            activation = getattr(layer, "activation", None)
+            activation_name = getattr(activation, "__name__", "")
+            if activation_name == "softmax":
+                return False
+            if activation_name == "linear":
+                return True
+        return False
+
+    def _select_preprocess_mode(self) -> str:
+        if self._model_has_rescaling or self._model_has_normalization:
+            return "raw_0_255_internal_preprocessing"
+        return os.getenv("ML_PREPROCESS_MODE", "div_255").lower()
 
     def _image_from_bytes(self, image_bytes: bytes):
         from PIL import Image, ImageOps
@@ -426,29 +506,115 @@ class _Predictor:
     def _preprocess(self, image_bytes: bytes) -> np.ndarray:
         image_obj = self._image_from_bytes(image_bytes).resize(self.img_size)
         arr = np.asarray(image_obj, dtype="float32")
-
-        # Add batch dimension FIRST -> shape becomes (1, H, W, C)
         arr = np.expand_dims(arr, axis=0)
 
-        # Scale pixel inputs correctly based on MobileNetV3 requirements
-        try:
-            import tensorflow as tf
-            arr = tf.keras.applications.mobilenet_v3.preprocess_input(arr)
-            if hasattr(arr, "numpy"):
-                arr = arr.numpy()
-        except Exception:
-            # Native fallback matching standard logic if TF package routines bug out
-            arr = arr / 255.0
+        if self._preprocess_mode in {"raw_0_255", "raw", "raw_0_255_internal_preprocessing"}:
+            return arr
 
+        if self._preprocess_mode in {"div_255", "normalize", "rescale"}:
+            return arr / 255.0
+
+        if self._preprocess_mode in {"efficientnetv2", "efficientnet_v2", "preprocess_input"}:
+            try:
+                import tensorflow as tf
+
+                processed = tf.keras.applications.efficientnet_v2.preprocess_input(arr)
+                return processed.numpy() if hasattr(processed, "numpy") else processed
+            except Exception:
+                LOGGER.exception("EfficientNetV2 preprocess_input failed; falling back to raw input.")
+                return arr
+
+        LOGGER.warning("Unknown ML_PREPROCESS_MODE=%s; using raw 0..255 input.", self._preprocess_mode)
         return arr
 
+    def _preprocess_variants(self, image_bytes: bytes) -> dict[str, np.ndarray]:
+        image_obj = self._image_from_bytes(image_bytes).resize(self.img_size)
+        raw = np.expand_dims(np.asarray(image_obj, dtype="float32"), axis=0)
+        variants = {
+            "raw_0_255": raw,
+            "div_255": raw / 255.0,
+        }
+        try:
+            import tensorflow as tf
+
+            processed = tf.keras.applications.efficientnet_v2.preprocess_input(raw.copy())
+            variants["efficientnetv2_preprocess_input"] = (
+                processed.numpy() if hasattr(processed, "numpy") else processed
+            )
+        except Exception:
+            LOGGER.exception("Unable to compute EfficientNetV2 preprocess_input diagnostic.")
+        return variants
+
     def _normalize_probs(self, values: np.ndarray) -> np.ndarray:
-        probs = np.asarray(values, dtype="float32")
+        probs = np.asarray(values, dtype="float32").reshape(-1)
+        if self._model_outputs_logits:
+            exps = np.exp(probs - np.max(probs))
+            return exps / np.sum(exps)
+
         total = float(np.sum(probs))
         if 0.99 <= total <= 1.01 and np.all(probs >= 0):
             return probs
+        LOGGER.warning(
+            "Model output does not look like probabilities despite softmax metadata; applying softmax. "
+            "sum=%.6f min=%.6f max=%.6f",
+            total,
+            float(np.min(probs)),
+            float(np.max(probs)),
+        )
         exps = np.exp(probs - np.max(probs))
         return exps / np.sum(exps)
+
+    def _log_top_predictions(
+        self,
+        raw_output: np.ndarray,
+        probs: np.ndarray,
+        status: str,
+        prefix: str = "Prediction",
+    ) -> None:
+        raw = np.asarray(raw_output, dtype="float32").reshape(-1)
+        top_raw = np.argsort(raw)[::-1][:5]
+        top_probs = np.argsort(probs)[::-1][:5]
+        LOGGER.info(
+            "%s top5 raw outputs: %s",
+            prefix,
+            [
+                {
+                    "idx": int(i),
+                    "label": LABELS[int(i)],
+                    "value": round(float(raw[int(i)]), 6),
+                }
+                for i in top_raw
+            ],
+        )
+        LOGGER.info(
+            "%s top5 labels confidence: %s",
+            prefix,
+            [
+                {
+                    "idx": int(i),
+                    "label": LABELS[int(i)],
+                    "confidence": round(float(probs[int(i)]), 6),
+                }
+                for i in top_probs
+            ],
+        )
+        LOGGER.info("%s status returned to frontend: %s", prefix, status)
+
+    def _compare_preprocessing_modes(self, image_bytes: bytes) -> None:
+        if not ML_COMPARE_PREPROCESSING:
+            return
+        LOGGER.info("Preprocessing diagnostic enabled: testing raw, /255, EfficientNetV2 preprocess_input.")
+        for mode, x in self._preprocess_variants(image_bytes).items():
+            raw_output = np.asarray(self._model.predict(x, verbose=0)[0], dtype="float32")
+            probs = self._normalize_probs(raw_output)
+            LOGGER.info(
+                "Preprocess mode=%s input_min=%.4f input_max=%.4f output_sum=%.6f",
+                mode,
+                float(np.min(x)),
+                float(np.max(x)),
+                float(np.sum(raw_output)),
+            )
+            self._log_top_predictions(raw_output, probs, "diagnostic", prefix=f"Preprocess {mode}")
 
     def _normalize_plant_hint(self, plant_hint: Optional[str]) -> Optional[str]:
         if not plant_hint:
@@ -522,6 +688,7 @@ class _Predictor:
             result = self._invalid_leaf_result(plant_detection["confidence"], lang)
             result["leaf_signal"] = leaf_signal
             result["plant_detection"] = plant_detection
+            LOGGER.info("Prediction status returned to frontend: %s", result["status"])
             return result
 
         if not plant_detection["has_plant"]:
@@ -532,7 +699,16 @@ class _Predictor:
             )
 
         x = self._preprocess(image_bytes)
-        probs = self._normalize_probs(self._model.predict(x, verbose=0)[0])
+        LOGGER.info(
+            "Prediction input preprocessing=%s min=%.4f max=%.4f mean=%.4f",
+            self._preprocess_mode,
+            float(np.min(x)),
+            float(np.max(x)),
+            float(np.mean(x)),
+        )
+        self._compare_preprocessing_modes(image_bytes)
+        raw_output = np.asarray(self._model.predict(x, verbose=0)[0], dtype="float32")
+        probs = self._normalize_probs(raw_output)
 
         allowed_plant = self._normalize_plant_hint(plant_hint)
         plant_confidence = self._plant_probability(probs, allowed_plant)
@@ -542,7 +718,9 @@ class _Predictor:
                 plant_hint,
                 plant_confidence,
             )
-            return self._invalid_leaf_result(plant_confidence, lang)
+            result = self._invalid_leaf_result(plant_confidence, lang)
+            LOGGER.info("Prediction status returned to frontend: %s", result["status"])
+            return result
 
         top = self._top_predictions(probs, top_k, lang, plant_hint)
         best = dict(top[0])
@@ -560,9 +738,12 @@ class _Predictor:
         best["plant_detection"] = plant_detection
         best["leaf_signal"] = leaf_signal
         if best["confidence"] < MIN_DISEASE_CONFIDENCE:
-            return self._low_confidence_result(best)
+            result = self._low_confidence_result(best)
+            self._log_top_predictions(raw_output, probs, result["status"])
+            return result
 
         best["status"] = "ok"
+        self._log_top_predictions(raw_output, probs, best["status"])
         return best
 
 

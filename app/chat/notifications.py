@@ -104,7 +104,13 @@ class NotificationService:
 
     def notify_new_message(self, conversation, message, sender_name: str) -> None:
         """Notifie le destinataire (admin si l'expéditeur est un user, et inversement)."""
-        preview = message.content.strip()
+        mtype = getattr(message, "type", "text")
+        if mtype == "image":
+            preview = "[Photo]"
+        elif mtype == "audio":
+            preview = "[Message vocal]"
+        else:
+            preview = message.content.strip()
         data = {
             "type": "chat",
             "conversation_id": conversation.id,

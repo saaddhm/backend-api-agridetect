@@ -120,7 +120,10 @@ class Message(SQLModel, table=True):
     conversation_id: int = Field(index=True, foreign_key="conversation.id")
     sender_id: int = Field(foreign_key="user.id")
     sender_role: str  # user | admin
-    content: str
+    content: str = ""
+    type: str = Field(default="text")  # text | image | audio
+    media_url: Optional[str] = None
+    audio_ms: int = Field(default=0)
     is_read: bool = Field(default=False, index=True)
     created_at: datetime = Field(default_factory=datetime.utcnow, index=True)
 

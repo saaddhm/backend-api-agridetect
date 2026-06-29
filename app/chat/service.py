@@ -110,6 +110,15 @@ class ConversationService:
             .where(Message.is_read == False)  # noqa: E712
         ).one()
 
+        if last is None:
+            preview = None
+        elif getattr(last, "type", "text") == "image":
+            preview = "[Photo]"
+        elif getattr(last, "type", "text") == "audio":
+            preview = "[Message vocal]"
+        else:
+            preview = last.content
+
         return ConversationRead(
             id=conversation.id,
             user_id=conversation.user_id,
@@ -120,7 +129,7 @@ class ConversationService:
             last_message_at=conversation.last_message_at,
             user_name=user.full_name if user else None,
             user_email=user.email if user else None,
-            last_message=last.content if last else None,
+            last_message=preview,
             unread_count=int(unread),
         )
 
@@ -155,9 +164,18 @@ class ChatService:
         return items, int(total)
 
     def send_message(
-        self, conversation: Conversation, sender: User, content: str
+        self,
+        conversation: Conversation,
+        sender: User,
+        content: str,
+        msg_type: str = "text",
+        media_url: str | None = None,
+        audio_ms: int = 0,
     ) -> Message:
-        """Crée un message, met à jour la conversation et déclenche la notification."""
+        """Crée un message, met à jour la conversation et déclenche la notification.
+
+        SECURITE : le sender_role est derive du JWT (sender.role), JAMAIS du client.
+        """
         role = SenderRole.ADMIN if sender.role == "ADMIN" else SenderRole.USER
         now = datetime.utcnow()
 
@@ -166,6 +184,9 @@ class ChatService:
             sender_id=sender.id,
             sender_role=role,
             content=content.strip(),
+            type=msg_type,
+            media_url=media_url,
+            audio_ms=audio_ms,
             is_read=False,
             created_at=now,
         )

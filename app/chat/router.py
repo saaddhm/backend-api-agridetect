@@ -1,10 +1,24 @@
 """Endpoints REST du chat de support (préfixe complet : /api/chat)."""
+import os
+import uuid
+from pathlib import Path as FsPath
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    File,
+    Form,
+    HTTPException,
+    Query,
+    UploadFile,
+    status,
+)
+from fastapi.responses import FileResponse
 from sqlmodel import Session, select
 
 from ..auth import get_current_admin, get_current_user
+from ..config import settings
 from ..database import get_session
 from ..models import Conversation, DeviceToken, Message, User
 from .dependencies import get_accessible_conversation, get_accessible_message
@@ -20,6 +34,13 @@ from .schemas import (
 from .service import ChatService, ConversationService
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
+
+# Dossier de stockage des medias du chat (photos / audio).
+CHAT_MEDIA_DIR = os.path.join(settings.UPLOAD_DIR, "chat")
+os.makedirs(CHAT_MEDIA_DIR, exist_ok=True)
+
+_IMAGE_EXT = {"jpg", "jpeg", "png", "webp", "gif"}
+_AUDIO_EXT = {"m4a", "aac", "mp3", "ogg", "wav"}
 
 
 # --------------------------------------------------------------------------- #
@@ -126,6 +147,66 @@ def send_message(
         pass
     message = ChatService(session).send_message(conversation, current, payload.content)
     return MessageRead.model_validate(message)
+
+
+@router.post(
+    "/conversations/{conversation_id}/messages/media",
+    response_model=MessageRead,
+    status_code=201,
+)
+async def send_media_message(
+    file: UploadFile = File(...),
+    kind: str = Form("image"),  # 'image' | 'audio'
+    audio_ms: int = Form(0),
+    conversation: Conversation = Depends(get_accessible_conversation),
+    session: Session = Depends(get_session),
+    current: User = Depends(get_current_user),
+):
+    """Envoie une photo ou un message vocal (propriétaire ou admin).
+
+    Le fichier est stocke avec un nom aleatoire (uuid). Seul le message (donc
+    l'URL) est liste via des endpoints proteges par JWT + ownership.
+    """
+    ext = (file.filename or "").rsplit(".", 1)[-1].lower() if "." in (file.filename or "") else ""
+    if kind == "audio":
+        ext = ext if ext in _AUDIO_EXT else "m4a"
+    else:
+        kind = "image"
+        ext = ext if ext in _IMAGE_EXT else "jpg"
+
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Fichier vide.")
+    if len(content) > settings.MAX_UPLOAD_MB * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Fichier trop volumineux.")
+
+    fname = f"{uuid.uuid4().hex}.{ext}"
+    FsPath(CHAT_MEDIA_DIR, fname).write_bytes(content)
+    media_url = f"{settings.API_PREFIX}/chat/media/{fname}"
+
+    message = ChatService(session).send_message(
+        conversation,
+        current,
+        content="",
+        msg_type=kind,
+        media_url=media_url,
+        audio_ms=int(audio_ms or 0),
+    )
+    return MessageRead.model_validate(message)
+
+
+@router.get("/media/{filename}")
+def get_chat_media(filename: str):
+    """Sert un media de chat. Public mais nom de fichier non devinable (uuid).
+
+    La LISTE des medias d'une conversation reste protegee (JWT + ownership) ;
+    seul l'octet brut d'un fichier dont on connait deja l'URL est accessible.
+    """
+    safe = os.path.basename(filename)  # empeche le path traversal
+    path = FsPath(CHAT_MEDIA_DIR, safe)
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="Media introuvable.")
+    return FileResponse(path)
 
 
 @router.put("/messages/{message_id}/read", response_model=MessageRead)

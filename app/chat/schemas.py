@@ -15,6 +15,9 @@ class MessageRead(BaseModel):
     sender_id: int
     sender_role: str
     content: str
+    type: str = "text"
+    media_url: Optional[str] = None
+    audio_ms: int = 0
     is_read: bool
     created_at: datetime
 
